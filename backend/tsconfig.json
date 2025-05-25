@@ -5,6 +5,8 @@
     "outDir": "./dist",
     "rootDir": "./",
     "strict": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "esModuleInterop": true,         // ✅ Add this line
+    "skipLibCheck": true             // ✅ Optional: improves speed and avoids some issues
   }
 }

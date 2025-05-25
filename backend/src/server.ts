@@ -3,6 +3,9 @@ import express = require("express");
 import cors = require("cors");
 import bodyParser = require("body-parser");
 import cookieParser = require("cookie-parser");
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
+import path from 'path';
 import userRouter from "./modules/users/usersRouter";
 import isAuthenticated from "./middlewares/auth";
 import productsRouter from "./modules/products/productsRouter";
@@ -11,6 +14,9 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 app.use(cors());
+
+const swaggerDocument = YAML.load(path.join(__dirname, './docs/swagger.yaml'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
